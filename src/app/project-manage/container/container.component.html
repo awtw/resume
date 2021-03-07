@@ -1,0 +1,31 @@
+<nav class="navbar navbar-light bg-blue">
+	<a class="navbar-brand d-flex justify-content-center align-items-center">
+		<img [src]="imageSafeUrl"
+			 width="30"
+			 height="30"
+			 class="d-inline-block align-top click touch"
+			 alt="案件管理"
+			 loading="lazy"
+			 >
+		<span class="name pl-2 touch"
+			  (click)="clickedMain()">專案管理</span>
+		<!-- <span class="badge badge-secondary nav-item ml-3" (click)="notify()">教學提示</span> -->
+	</a>
+	<form class="form-inline pr-3">
+		<button type="submit"
+				class="btn btn-dark select-btn touch btn-120"
+				(click)="search()">
+			<img [src]="imageSearchSafeUrl"
+				 width="15"
+				 height="15"
+				 class="d-inline-block align-top click mt-1 mr-1"
+				 alt="search"
+				 loading="lazy">
+			進階搜尋
+    </button>
+	</form>
+</nav>
+<router-outlet></router-outlet>
+ <div class="row col-1 ml-4 sticky-home">
+    <img [src]="gotoImage" class="d-inline-block icon-size click" alt="x" loading="..." tooltip="回到首頁" (click)="goHome()">
+  </div>

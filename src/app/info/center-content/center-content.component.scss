@@ -1,0 +1,68 @@
+@import '../../btag-common/main.scss';
+.building-image{
+  position: absolute;
+  bottom: 0;
+  width: 95%;
+}
+.person-image{
+  position: absolute;
+  bottom: 15vh;
+  left: -2vw;
+  width: 50%;
+}
+.person2-image{
+  position: absolute;
+  top: 20vh;
+  right: -.8vw;
+  width: 40%;
+}
+.h3 {
+  letter-spacing: .4rem;
+}
+.transparent{
+  background-color: white !important;
+}
+.input-group-prepend, .input-group-text{
+  border: 0px !important;
+  border-color: white !important;
+}
+input, input:hover, input:focus, input:active{
+  border-color: white !important;
+  border-radius: .3rem;
+}
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+.card{
+  min-height: 10vh;
+  margin: 1rem;
+  z-index: 100;
+}
+.line{
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 5px;
+  background-color: $mBlue;
+}
+.input-tag{
+  border-color: $mWhite;
+  height: 100%;
+}
+.font-md{
+  font-size: .8rem;
+}

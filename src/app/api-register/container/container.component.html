@@ -1,0 +1,55 @@
+
+<!-- 提示訊息 -->
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" [dismissible]="alert.dismissible"  (onClosed)="onClosed(alert)">
+    <span class="font-weight-bold mr-2"> {{alert.header}} </span> {{ alert.msg }}
+  </alert>
+</div>
+  <!-- 提示訊息 -->
+<nav class="navbar navbar-light bg-mYellow">
+	<a class="navbar-brand">
+		<img [src]="iconImage" class="d-inline-block align-top  ml-3 icon-size" alt="x" loading="lazy click">
+		<span class="pl-2 click">API 註冊檔
+			<span *ngIf="checkIfCN"> ( <span class="font-weight-bold">CN</span> ) </span>
+			<span *ngIf="!checkIfCN"> ( <span class="font-weight-bold">TW</span> ) </span>
+		</span>
+		<span class="badge badge-light ml-1 click" *ngIf="checkIfCN" (click)="changeCN()">切換TW</span>
+		<span class="badge badge-light ml-1 click" *ngIf="!checkIfCN" (click)="changeCN()">切換CN</span>
+
+	</a>
+  <span class="pr-3">
+    <img [src]="infoImage" class="d-inline-block icon-s-size" alt="x" loading="..." tooltip="教學說明"
+      (click)="notify()">
+  </span>
+</nav>
+
+<div class="container-fluid bg-light">
+	<div class="row">
+		<div class="col-12">
+			<div class="form-row align-items-center ml-1">
+				<div class="col-6 pt-3">
+					<button type="submit" class="btn bg-mBlue"(click)="addNew()"><span class="font-weight-bold">新增API</span></button>
+					<button type="submit" class="btn bg-mBlue ml-3" (click)="clearFilter()">
+						<span class="font-weight-bold">清除條件</span>
+					</button>
+					<button type="submit" class="btn  bg-mYellow ml-3" (click)="downloadExcel()">
+						<span class="font-weight-bold">匯出資料</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 mt-3">
+			<ag-grid-angular class="ag-theme-alpine ag-grid-size ml-1" [rowData]="rowData" [columnDefs]="columnDefs"
+				[defaultColDef]="defaultColDef" [animateRows]="true" [autoGroupColumnDef]="autoGroupColumnDef"
+				[enableRangeSelection]="true" [enableRangeSelection]="true" [allowContextMenuWithControlKey]="true"
+				[frameworkComponents]="frameworkComponents" (gridReady)="onGridReady($event)"
+				(cellValueChanged)="ngOnCellValueChanged($event)" [rowSelection]="rowSelection" [rowMultiSelectWithClick]="false"
+				(rowEditingStarted)="onRowEditingStarted($event)" (selectionChanged)='onSelectionChanged($event)'
+				[editType]="editType" [suppressMenuHide]="true" [gridOptions]="gridOptions" [pagination]="true">
+			</ag-grid-angular>
+		</div>
+	</div>
+</div>
+  <div class="row col-1 ml-4 sticky-home">
+    <img [src]="gotoImage" class="d-inline-block icon-size click" alt="x" loading="..." tooltip="回到首頁" (click)="goHome()">
+  </div>
