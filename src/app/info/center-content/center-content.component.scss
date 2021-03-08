@@ -66,3 +66,11 @@ label:focus,
 .font-md{
   font-size: .8rem;
 }
+@media screen and (max-width: 600px) {
+  .d-sm-notshow{
+    display: none;
+  }
+  .text-sm-sm{
+    font-size: 1.1rem;
+  }
+}

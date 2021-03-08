@@ -1,9 +1,9 @@
 <div class="">
   <div class="container mt-4">
    <div class="col-md-12 text-center disable-text-selection">
-      <h2 class="h3">EXPERIENCE 經歷</h2>
+      <h2 class="h3 text-sm-sm">EXPERIENCE 經歷</h2>
    </div>
-   <div class="col-md-12 mt-4">
+   <div class="col-md-12 mt-4 d-sm-notshow">
       <div class="input-group mb-3 disable-text-selection">
         <div class="input-group-prepend transparent">
           <span class="input-group-text transparent" id="basic-addon1">
@@ -11,7 +11,7 @@
           </span>
         </div>
         <!-- <input type="text" class="form-control" aria-label="search experience"> -->
-        <div class="col-md-12 form-control input-tag">
+        <div class="col-md-12 form-control input-tag d-sm-notshow">
           <span class="badge badge-secondary mr-1 font-md click"
           [class.badge-dark]="item.ifClick"
           *ngFor="let item of searchType" (click)="clickTool(item)">
