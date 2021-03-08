@@ -111,6 +111,10 @@ export class ContainerComponent implements OnInit {
     const temp2: string[] = [];
     const temp = this.apiRegisterService.GetOwnerListRequest(checkCnInsert);
     temp.forEach(data => {
+      this.ownerListName.push(data.OWNER_NAME);
+    });
+    // this.ownerListName = this.apiRegisterService.GetOwnerListRequest(checkCnInsert);
+    temp.forEach(data => {
       temp2.push(data.OWNER_NAME);
     });
     // this.gridOptions.api.showLoadingOverlay();
