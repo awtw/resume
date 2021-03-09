@@ -137,6 +137,27 @@ export class MenuContentComponent implements OnInit {
       this.fullMenuProgramList.push(MenuListProgram);
     });
     this.ProgramInfo = this.menuService.getProgramList();
+    const item: MenuListProgram = {
+					MENU: '測試目錄',
+					PRG_NO: '',
+					MENU_DESC: '測試目錄',
+					PRG: ' 點擊程式後再拖曳 可支援多程式拖曳',
+					RONLY: '',
+					ENV1: 100,
+					ENV2: 1,
+					ENV3: 0,
+					SEND_EMPNO: '',
+					RONLY1: '',
+					RONLY2: '',
+					MODULE: '測試目錄',
+					COMP:  '測試目錄',
+					DBNM:  '測試目錄',
+					FLAG_PRG: '',
+					PRG_DESC: '',
+					COUNTRY: 'TW',
+					select: false
+				};
+    this.programListForUse.push(item);
     this.ProgramInfo.forEach(data => {
       const MenuListProgram: MenuListProgram = {
             MENU: '測試目錄',
@@ -231,63 +252,7 @@ export class MenuContentComponent implements OnInit {
 					debounceMs: 200,
 					defaultJoinOperator: 'OR'
 				}
-			},
-			// {
-			// 	headerName: '前往',
-			// 	field: 'goTo',
-			// 	width: 100,
-			// 	filter: false,
-			// 	cellRenderer: 'RenderButtonComponent',
-			// 	cellRendererParams: {
-			// 		clicked: (field: any) => {
-			// 			const tempInfodataIndex: MenuInfo = {
-			// 				MENU: field.MENU,
-			// 				MENU_DESC: field.MENU_DESC,
-			// 				MODULE: field.MODULE,
-			// 				COUNTRY: 'TW'
-			// 			};
-			// 			// console.log(tempInfodataIndex);
-			// 			this.goToLink(tempInfodataIndex);
-			// 		}
-			// 	},
-			// },
-			// {
-			// 	headerName: '複製結構',
-			// 	field: 'copyWord',
-			// 	width: 150,
-			// 	filter: false,
-			// 	cellRenderer: 'RenderButtonComponent',
-			// 	cellRendererParams: {
-			// 		clicked: (field: any) => {
-			// 			const tempInfodataIndex: MenuInfo = {
-			// 				MENU: field.MENU,
-			// 				MENU_DESC: field.MENU_DESC,
-			// 				MODULE: field.MODULE,
-			// 				COUNTRY: 'TW'
-			// 			};
-			// 			console.log(tempInfodataIndex);
-			// 			// this.goToLink(tempInfodataIndex, false);
-			// 			this.fullMenuProgramFilterList.forEach(data => {
-			// 				data.COUNTRY = 'TW';
-			// 			});
-			// 			const initialState = {
-			// 				tempInfodataIndex,
-			// 				// edit by yoyoLin 升級發現型別錯誤, message 先調整為第一筆, 問題請自行再修正
-			// 				// MenuAddComponent.message 型別是 MenuListProgram 非 MenuListProgram[]
-			// 				message: this.fullMenuProgramFilterList[0],
-			// 				moduleList: this.moduleList,
-			// 				stationListInfo: this.stationListInfo,
-			// 				title: '複製結構'
-			// 			};
-			// 			this.modalRef = this.modalService.show(AddMenuComponent, { initialState });
-			// 			this.modalRef.content.onClose.subscribe((result: boolean) => {
-			// 				if (result) {
-			// 					this.ngOnInit();
-			// 				}
-			// 			});
-			// 		}
-			// 	},
-			// }
+			}
 		];
 
 	}
