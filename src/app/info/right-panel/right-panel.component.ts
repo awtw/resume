@@ -36,6 +36,10 @@ export class RightPanelComponent implements OnInit {
 
   projectManage(): void {
     this.router.navigate(['../project-manage'], { relativeTo: this.activatedRoute });
+
+  }
+  menu(): void {
+    this.router.navigate(['../menu'], { relativeTo: this.activatedRoute });
   }
 
   aboutMe(): void {

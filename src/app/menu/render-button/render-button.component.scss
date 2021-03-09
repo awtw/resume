@@ -1,0 +1,9 @@
+@import '../../btag-common/main.scss';
+.btn{
+	font-size: 1em;
+}
+.btn, .btn-hover{
+	// background-color: $dark-purple !important;
+	// color: $main-color !important;
+	background-color: $erp-green;
+}

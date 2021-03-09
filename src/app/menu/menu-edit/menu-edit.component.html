@@ -1,0 +1,91 @@
+<div class="modal-header modal-header-erp-green">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="notSave()">
+		<span aria-hidden="true">&times;</span>
+	</button> -->
+</div>
+<div class="modal-body">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <form class="form">
+              <div class="form-group col-12 pb-1">
+                <label class="col-form-label  text-left pr-2">EDU是否顯示</label>
+                <select [attr.disabled]="item.ENV3.toString() == '1' ? 'disabled' : null" class="form-control"
+                  name="PRG_FLAG" value="1">
+                  <option [value]="1">顯示</option>
+                  <option [value]="0">隱藏</option>
+                </select>
+              </div>
+            </form>
+            <form class="form">
+              <div class="form-group col-12 pb-1">
+                <label class="col-form-label  text-left pr-2">EDU能否編輯</label>
+                <select [attr.disabled]="item.ENV3.toString() == '1' ? 'disabled' : null" class="form-control"
+                  name="PRG_FLAG" value='0'>
+                  <option [value]="0">編輯</option>
+                  <option [value]="1">唯讀</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <form class="form">
+              <div class="form-group col-12 pb-1">
+                <label class="col-form-label  text-left pr-2">IT是否顯示</label>
+                <select class="form-control" name="PRG_FLAG"value='0'>
+                  <option [value]="1">顯示</option>
+                  <option [value]="0">隱藏</option>
+                </select>
+              </div>
+            </form>
+            <form class="form">
+              <div class="form-group col-12 pb-1">
+                <label class="col-form-label  text-left pr-2">IT能否編輯</label>
+                <select class="form-control" name="PRG_FLAG" value='0'>
+                  <option [value]="0">編輯</option>
+                  <option [value]="1">唯讀</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <form class="form">
+              <div class="form-group col-12 pb-1">
+                <label class="col-form-label  text-left pr-2">正式是否顯示</label>
+                <select [attr.disabled]="true" class="form-control" name="PRG_FLAG" value='0'>
+                  <option *ngIf="item.ENV3 == 1" [value]="1">顯示</option>
+                  <option *ngIf="item.ENV3 == 0" [value]="0">隱藏</option>
+                </select>
+              </div>
+            </form>
+            <form class="form">
+              <div class="form-group col-12 pb-1">
+                <label class="col-form-label  text-left pr-2">正式能否編輯</label>
+                <select [attr.disabled]="true" class="form-control" name="PRG_FLAG"value='0'>
+                  <option *ngIf="item.RONLY === '0'" [value]="0">編輯</option>
+                  <option *ngIf="item.RONLY === '1'" [value]="1">唯讀</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-erp-green" (click)="add()">修改</button>
+</div>
