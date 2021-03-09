@@ -1,14 +1,23 @@
+
+
+<!-- 提示訊息 -->
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" [dismissible]="alert.dismissible"  (onClosed)="onClosed(alert)">
+    <span class="font-weight-bold mr-2"> {{alert.header}} </span> {{ alert.msg }}
+  </alert>
+</div>
+  <!-- 提示訊息 -->
 <nav class="navbar navbar-light bg-dark aurora-orange">
   <a class="navbar-brand ml-2">
     <img [src]="imageSafeUrl" width="30" height="30" class="d-inline-block align-top" alt="目錄程式設定" loading="lazy click"
       (click)="clickedMain()">
     <span class="name pl-2 click text-white" (click)="clickedMain()">目錄程式設定
-      <span *ngIf="checkIfCN"> CN </span>
-      <span *ngIf="!checkIfCN"> TW </span>
+      <!-- <span *ngIf="checkIfCN"> CN </span>
+      <span *ngIf="!checkIfCN"> TW </span> -->
     </span>
     <span class="badge badge-secondary  ml-1 click" (click)="notify()">教學提示</span>
-    <span class="badge badge-warning ml-1 click" *ngIf="checkIfCN" (click)="changeCN()">切換TW</span>
-    <span class="badge badge-warning ml-1 click" *ngIf="!checkIfCN" (click)="changeCN()">切換CN</span>
+    <!-- <span class="badge badge-warning ml-1 click" *ngIf="checkIfCN" (click)="changeCN()">切換TW</span>
+    <span class="badge badge-warning ml-1 click" *ngIf="!checkIfCN" (click)="changeCN()">切換CN</span> -->
   </a>
   <span class="pr-3 text-white">
     <svg width="18" height="18" fill="currentColor" class="bi bi-info-circle ml-1 click" tooltip="下載說明文件"
@@ -22,3 +31,6 @@
 <div class="container-fluid bg-light my-3">
   <router-outlet></router-outlet>
 </div>
+  <div class="row col-1 ml-4 sticky-home">
+    <img [src]="gotoImage" class="d-inline-block icon-size click" alt="x" loading="..." tooltip="回到首頁" (click)="goHome()">
+  </div>

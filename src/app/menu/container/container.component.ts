@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SafeUrl, DomSanitizer, Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertComponent } from 'ngx-bootstrap/alert';
 import { ToastrService } from 'ngx-toastr';
 import { MenuService } from '../menu.service';
 
@@ -11,16 +12,18 @@ import { MenuService } from '../menu.service';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit {
-
+  gotoImage = 'assets/images/api-register/go-to-location.png';
   imageUrl = './assets/images/btag-menu/menu.png';
 	imageSafeUrl: SafeUrl;
 	checkIfCN = false;
+  // alert
+  alerts: any[] = [];
 	constructor(
 		public menuService: MenuService,
 		private sanitizer: DomSanitizer,
 		private router: Router,
 		private title: Title,
-		private toastr: ToastrService
+    private activatedRoute: ActivatedRoute,
 	) {
 		const env = this.router.url.split('/');
 		env.forEach(data => {
@@ -39,14 +42,12 @@ export class ContainerComponent implements OnInit {
 		this.imageSafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.imageUrl);
 	}
 
+  goHome(): void{
+    this.router.navigate(['../../info'], { relativeTo: this.activatedRoute });
+  }
+
 	notify() {
-		this.toastr.warning('選擇目錄站台 <br> 設定目錄程式要先點選後拖曳到目錄中 <br> 這邊的目錄程式與程式管控表不同，目錄程式連結目錄之用，程式名稱可能跟程式管控表不同', '使用教學', {
-			disableTimeOut: true,
-			positionClass: 'toast-top-right',
-			closeButton: true,
-			enableHtml: true,
-			timeOut: 3000,
-		});
+    this.addAlert('warning', '使用教學' , '選擇目錄站台 <br> 設定目錄程式要先點選後拖曳到目錄中 <br> 這邊的目錄程式與程式管控表不同，目錄程式連結目錄之用，程式名稱可能跟程式管控表不同', false, 1000);
 	}
 
 	clickedMain() {
@@ -72,4 +73,20 @@ export class ContainerComponent implements OnInit {
 	downloadFile() {
 		window.open('./assets/file/menu.pdf', '_blank');
 	}
+
+  // alert
+  addAlert(type: string, header: string, msg: string, dismissible: boolean, timeout: number ): void {
+  this.alerts.push({
+    type,
+    header,
+    msg,
+    dismissible,
+    timeout
+  });
+  }
+
+  onClosed(dismissedAlert: AlertComponent): void {
+  this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  }
+
 }

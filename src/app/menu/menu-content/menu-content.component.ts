@@ -30,21 +30,6 @@ export class MenuContentComponent implements OnInit {
 	saveMenuID: string = '123';
   // alert
   alerts: any[] = [];
-
-	// moduleList: ModuleList[];
-	// menuList: MenuInfo[];
-	// fullProgramList: MenuListProgram[];
-	// fullMenuList: MenuPgInfo[];
-	// menuModuleList: ModuleList[];
-	// selectedRowIndex: MenuInfo;
-	// stationMenuListInfo: GetOneMenuPgList;
-	// insertProgramList: MenuListProgram[] = [];
-	// fullMenuProgramList: MenuListProgram[] = [];
-	// fullMenuProgramFilterList: MenuListProgram[] = [];
-	// programNameList: string[] = [];
-	// programList: MenuListProgram[] = [];
-	// programStaticList: MenuListProgram[] = [];
-	// saveOne: MenuPgInfo;
   ProgramInfo: ProgramInfo[] = [];
   ModuleList: ModuleList[] = [];
   MenuPgInfo: MenuPgInfo[] = [];
@@ -186,11 +171,13 @@ export class MenuContentComponent implements OnInit {
 
   }
 
-  addNew() {}
+  addNew() {
+     this.addAlert('warning', '提示' , '請向部門主管提出申請', false, 1000);
+  }
 
   edit() {
 		this.ifMove = false;
-
+    this.addAlert('success', '提示' , '保存成功', false, 1000);
 	}
 
   editMenu(data: MenuListProgram): void {
