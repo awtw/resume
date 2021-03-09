@@ -141,7 +141,7 @@ export class MenuContentComponent implements OnInit {
 					MENU: '測試目錄',
 					PRG_NO: '',
 					MENU_DESC: '測試目錄',
-					PRG: ' 點擊程式後再拖曳 可支援多程式拖曳',
+					PRG: ' 請直接拖曳',
 					RONLY: '',
 					ENV1: 100,
 					ENV2: 1,
@@ -223,7 +223,7 @@ export class MenuContentComponent implements OnInit {
 	}
 
   backClicked() {
-		this.router.navigate(['../../info'], { relativeTo: this.activatedRoute });
+		this.router.navigate(['../../../info'], { relativeTo: this.activatedRoute });
 	}
 
   getData() {
@@ -272,7 +272,12 @@ export class MenuContentComponent implements OnInit {
   delete(item: MenuListProgram) {
 		this.ifMove = true;
 		item.select = false;
-     this.addAlert('warning', '提示' , '刪除', false, 1000);
+		if (this.fullMenuProgramList.length > 1) {
+			this.fullMenuProgramList.splice(this.fullMenuProgramList.indexOf(item), 1);
+			this.programListForUseStatic.push(item);
+		} else {
+			this.addAlert('warning', '提示' , '至少要有一隻程式', false, 1000);
+		}
 	}
 
   drop(event: CdkDragDrop<MenuListProgram[]>) {
@@ -281,6 +286,12 @@ export class MenuContentComponent implements OnInit {
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 			console.log(event);
 		} else {
+      if(event.previousContainer.data.length > 1){
+        transferArrayItem(event.previousContainer.data, event.container.data, event.currentIndex, event.currentIndex);
+      } else {
+        this.addAlert('warning', '提示' , '至少要有一隻程式', false, 1000);
+      }
+
 		}
 
 	}
@@ -289,33 +300,35 @@ export class MenuContentComponent implements OnInit {
 		this.counterForDrag++;
 
 		if (this.counterForDrag >= 3) {
-       this.addAlert('warning', '提示' , '點選程式再拖曳', false, 1000);
+       		// this.addAlert('warning', '提示' , '點選程式再拖曳', false, 1000);
 		}
 		this.ifMove = true;
 		if (event.previousContainer === event.container) {
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 			console.log(event);
 		} else {
-			const tempList = event.container.data.filter((unit) => unit.PRG.indexOf(event.previousContainer.data[event.previousIndex].PRG) > -1);
+			// const tempList = event.container.data.filter((unit) => unit.PRG.indexOf(event.previousContainer.data[event.previousIndex].PRG) > -1);
 			// console.log(tempList);
 			console.log(event);
 
-			if (tempList.length === 0 && event.previousContainer.data[event.previousIndex].PRG !== ' 請先點擊要添加的程式後再拖曳 可支援多程式拖曳') {
-				this.selectList.forEach(index => {
-					if (index.select) {
-						const dataIndex = this.programListForUse.indexOf(index);
-						const dataIndexStatic = this.programListForUseStatic.indexOf(index);
-						// console.log(dataIndex);
-						if (dataIndex >= 0) {
-							transferArrayItem(event.previousContainer.data, event.container.data, dataIndex, event.currentIndex);
-							event.currentIndex++;
-							if (dataIndexStatic >= 0) {
-								this.programListForUseStatic.splice(dataIndexStatic, 1);
-							}
-						}
-					}
-				});
-			}
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+
+			// if (tempList.length === 0 && event.previousContainer.data[event.previousIndex].PRG !== ' 請先點擊要添加的程式後再拖曳 可支援多程式拖曳') {
+			// 	this.selectList.forEach(index => {
+			// 		if (index.select) {
+			// 			const dataIndex = this.programListForUse.indexOf(index);
+			// 			const dataIndexStatic = this.programListForUseStatic.indexOf(index);
+			// 			// console.log(dataIndex);
+			// 			if (dataIndex >= 0) {
+			// 				transferArrayItem(event.previousContainer.data, event.container.data, dataIndexStatic, event.currentIndex);
+			// 				event.currentIndex++;
+			// 				if (dataIndexStatic >= 0) {
+			// 					this.programListForUseStatic.splice(dataIndexStatic, 1);
+			// 				}
+			// 			}
+			// 		}
+			// 	});
+			// }
 
 		}
 

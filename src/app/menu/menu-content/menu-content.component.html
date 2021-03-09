@@ -1,3 +1,11 @@
+
+<!-- 提示訊息 -->
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" [dismissible]="alert.dismissible"  (onClosed)="onClosed(alert)">
+    <span class="font-weight-bold mr-2"> {{alert.header}} </span> {{ alert.msg }}
+  </alert>
+</div>
+  <!-- 提示訊息 -->
 <div class="col-12">
 	<div class="row ml-1 mr-1">
 		<button type="submit"
@@ -75,14 +83,14 @@
 
 					</div>
 				</form>
-				<ul class="list-group bgc-set"
+				<ul class="list-group bgc-set h-70-scroll"
 					cdkDropList
-					[cdkDropListData]="programListForUse"
+					[cdkDropListData]="programListForUseStatic"
 					[cdkDropListConnectedTo]="menu"
 					#program="cdkDropList"
 					(cdkDropListDropped)="drop($event)">
 					<li class="list-group-item program-list"
-						*ngFor="let item of programListForUse ; let i = index"
+						*ngFor="let item of programListForUseStatic ; let i = index"
 						cdkDrag
 						(click)="select(item, i)"
 						[class.selected]="item.select"

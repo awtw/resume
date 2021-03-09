@@ -7,8 +7,8 @@ import { MenuInfo, MenuPgInfo, ModuleList, OTTypeInfo, ProgramInfo } from './men
 export class MenuService {
   programList:ProgramInfo[] = [
     {
-        'PRG': '90服務         ',
-        'PRG_DESC': '===服務系統====',
+        'PRG': '熱線服務         ',
+        'PRG_DESC': '===熱線服務====',
         'APPRVID': '    ',
         'FWID': '    ',
         'MG_EDU': 0,
@@ -21,7 +21,7 @@ export class MenuService {
         'PRG_FLAG': 1
     },
     {
-        'PRG': '90倉管         ',
+        'PRG': '倉儲管理         ',
         'PRG_DESC': '===倉管系統===      ',
         'APPRVID': '    ',
         'FWID': null,
@@ -35,7 +35,7 @@ export class MenuService {
         'PRG_FLAG': 1
     },
     {
-        'PRG': '90營業         ',
+        'PRG': '營業系統         ',
         'PRG_DESC': '===營業系統===      ',
         'APPRVID': '    ',
         'FWID': null,
@@ -49,8 +49,8 @@ export class MenuService {
         'PRG_FLAG': 1
     },
     {
-        'PRG': 'ACTIVITY_PAGE  ',
-        'PRG_DESC': '50週年禮品員購優惠',
+        'PRG': '50週年慶  ',
+        'PRG_DESC': '50週年慶',
         'APPRVID': '    ',
         'FWID': '    ',
         'MG_EDU': 0,
@@ -63,7 +63,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD000S00     ',
+        'PRG': '檔案傳輸系統-同仁專用',
         'PRG_DESC': '檔案傳輸系統',
         'APPRVID': '    ',
         'FWID': null,
@@ -77,7 +77,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD000S10     ',
+        'PRG': '檔案傳輸系統',
         'PRG_DESC': '檔案傳輸系統',
         'APPRVID': 'AD01',
         'FWID': '    ',
@@ -91,7 +91,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD005S00     ',
+        'PRG': '新增地址功能',
         'PRG_DESC': '新增地址功能',
         'APPRVID': '    ',
         'FWID': '    ',
@@ -119,7 +119,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD020S00T01  ',
+        'PRG': 'E-Mail通知訂閱',
         'PRG_DESC': 'E-Mail通知訂閱',
         'APPRVID': '    ',
         'FWID': null,
@@ -133,8 +133,8 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD023S00T01  ',
-        'PRG_DESC': '發信編號與規則維護',
+        'PRG': '寄件功能  ',
+        'PRG_DESC': '寄件功能',
         'APPRVID': '    ',
         'FWID': null,
         'MG_EDU': 0,
@@ -161,7 +161,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD11         ',
+        'PRG': '機管理系統',
         'PRG_DESC': '----主機管理系統----',
         'APPRVID': '    ',
         'FWID': '    ',
@@ -175,7 +175,7 @@ export class MenuService {
         'PRG_FLAG': 1
     },
     {
-        'PRG': 'ADAD110S00     ',
+        'PRG': '主機管理基本檔',
         'PRG_DESC': '主機管理基本檔',
         'APPRVID': '    ',
         'FWID': '    ',
@@ -189,7 +189,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD111S00     ',
+        'PRG': '主機類型檔配置',
         'PRG_DESC': '主機類型檔配置',
         'APPRVID': '    ',
         'FWID': '    ',
@@ -203,7 +203,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD112S00     ',
+        'PRG': '網域資訊檔配置',
         'PRG_DESC': '網域資訊檔配置',
         'APPRVID': '    ',
         'FWID': '    ',
@@ -217,7 +217,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD113S00     ',
+        'PRG': '硬體資訊檔配置',
         'PRG_DESC': '硬體資訊檔配置',
         'APPRVID': '    ',
         'FWID': '    ',
@@ -245,8 +245,8 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD115S00     ',
-        'PRG_DESC': '共同帳號檔配置',
+        'PRG': '帳密設定',
+        'PRG_DESC': '帳密設定',
         'APPRVID': '    ',
         'FWID': '    ',
         'MG_EDU': 0,
@@ -259,7 +259,7 @@ export class MenuService {
         'PRG_FLAG': 0
     },
     {
-        'PRG': 'ADAD116S00     ',
+        'PRG': '特殊帳號檔配置',
         'PRG_DESC': '特殊帳號檔配置',
         'APPRVID': '    ',
         'FWID': '    ',
@@ -339,33 +339,28 @@ export class MenuService {
   ];
 
   menuInfo: MenuInfo[] = [
-  {
-        'MENU': 'AD01 ',
-        'MENU_DESC': '簽呈補單',
-        'MODULE': 'AD'
-    },
     {
-        'MENU': 'ADAM ',
+        'MENU': 'AVVVDAM ',
         'MENU_DESC': 'ERP訊息通知設定',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADBI ',
+        'MENU': 'ADBSSSI ',
         'MENU_DESC': 'BI資料驗證管理',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADCFG',
+        'MENU': 'ADCFFFFG',
         'MENU_DESC': '主機管理參數設定',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADCU ',
+        'MENU': 'ADCWWWU ',
         'MENU_DESC': '地址資料維護',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADDB ',
+        'MENU': 'ADDFFFB ',
         'MENU_DESC': '資料庫管理',
         'MODULE': 'AD'
     },
@@ -375,119 +370,44 @@ export class MenuService {
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADDE ',
-        'MENU_DESC': '異質系統資料交換',
+        'MENU': 'ADDCCCE ',
+        'MENU_DESC': '資料交換系統',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADEM ',
+        'MENU': 'ADFFFEM ',
         'MENU_DESC': '異常指標管控系統',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADEMA',
-        'MENU_DESC': '異常指標管控系統SA',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'ADMG ',
+        'MENU': 'ADMSSSG ',
         'MENU_DESC': 'SMR後台管理',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADPP ',
+        'MENU': 'ADVVVPP ',
         'MENU_DESC': '個人化系統',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADPQ ',
+        'MENU': 'ADPQQQQ ',
         'MENU_DESC': '個人化系統測試2',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADPZ ',
+        'MENU': 'ADWWWPZ ',
         'MENU_DESC': '個人化系統測試專用',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADSV ',
+        'MENU': 'ADSSSSV ',
         'MENU_DESC': '主機監控管理',
         'MODULE': 'AD'
     },
     {
-        'MENU': 'ADTE ',
+        'MENU': 'ADDDDTE ',
         'MENU_DESC': 'TEST',
         'MODULE': 'AD'
-    },
-    {
-        'MENU': 'ADTR ',
-        'MENU_DESC': '資訊組新員程式作業',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'ADUP ',
-        'MENU_DESC': '程式管理發佈',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'ADUQ ',
-        'MENU_DESC': '程式管理發佈 (Chrome優化)',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'ADUT ',
-        'MENU_DESC': '程式管理發佈 (測試不發布)',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'AS   ',
-        'MENU_DESC': '檔案簽呈',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'AU   ',
-        'MENU_DESC': '權限管理作業',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'AU01 ',
-        'MENU_DESC': '資訊申請作業',
-        'MODULE': 'HR'
-    },
-    {
-        'MENU': 'AUAD ',
-        'MENU_DESC': '智能化ERP申請',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'AUMG ',
-        'MENU_DESC': 'M化權限管理作業',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'BI-HR',
-        'MENU_DESC': 'BI 人資系統',
-        'MODULE': ''
-    },
-    {
-        'MENU': 'CM00 ',
-        'MENU_DESC': '系統公告',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'CM01 ',
-        'MENU_DESC': '閱讀公告',
-        'MODULE': 'AD'
-    },
-    {
-        'MENU': 'FI   ',
-        'MENU_DESC': '財務系統',
-        'MODULE': 'FI'
-    },
-    {
-        'MENU': 'FIAF ',
-        'MENU_DESC': '融資系統',
-        'MODULE': 'FI'
     }
   ];
 
