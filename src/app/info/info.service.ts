@@ -222,7 +222,7 @@ export class InfoService {
   },
    {
     title: '程式館控系統',
-    Date: new Date(2020, 1, 3),
+    Date: new Date(2020, 1, 30),
     project: ProjectType.ERP功能開發,
     role: [RoleType.SA, RoleType.軟體開發],
     tool: [
