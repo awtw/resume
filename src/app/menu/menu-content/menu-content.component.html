@@ -1,3 +1,11 @@
+
+<!-- 提示訊息 -->
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" [dismissible]="alert.dismissible"  (onClosed)="onClosed(alert)">
+    <span class="font-weight-bold mr-2"> {{alert.header}} </span> {{ alert.msg }}
+  </alert>
+</div>
+  <!-- 提示訊息 -->
 <div class="col-12">
 	<div class="row ml-1 mr-1">
 		<button type="submit"
@@ -75,14 +83,14 @@
 
 					</div>
 				</form>
-				<ul class="list-group bgc-set"
+				<ul class="list-group bgc-set h-70-scroll"
 					cdkDropList
-					[cdkDropListData]="programListForUse"
+					[cdkDropListData]="programListForUseStatic"
 					[cdkDropListConnectedTo]="menu"
 					#program="cdkDropList"
 					(cdkDropListDropped)="drop($event)">
 					<li class="list-group-item program-list"
-						*ngFor="let item of programListForUse ; let i = index"
+						*ngFor="let item of programListForUseStatic ; let i = index"
 						cdkDrag
 						(click)="select(item, i)"
 						[class.selected]="item.select"
@@ -151,27 +159,14 @@
 						cdkDrag
 						[class.title]="item.FLAG_PRG === '1'"
 						[class.smart]="item.FLAG_PRG === '2'">
-						<!-- <div class=" bg-primary" *cdkDragPlaceholder></div> -->
 						<div class="row d-felx align-items-center justify-content-center">
 							<div class="col-1 d-felx align-items-center justify-content-center">
 								<span class=" ">{{i}}</span>
-								<!-- <span *ngIf="item.FLAG_PRG === '1'">標題</span>
-												<span *ngIf="item.FLAG_PRG === '0'">程式</span>
-												<span *ngIf="item.FLAG_PRG === '2'">Smart</span> -->
-								<!-- <div class="row">
-													<div class="col-12"><span class=" ">{{i}}</span></div>
-													<div class="col-12">
-														<span *ngIf="item.FLAG_PRG === '1'">標題</span>
-														<span *ngIf="item.FLAG_PRG === '0'">程式</span>
-														<span *ngIf="item.FLAG_PRG === '2'">Smart</span>
-													</div>
-												</div> -->
 							</div>
 							<div class="col-11">
 								<div class="row">
-									<div class="col-10 d-felx align-items-end justify-content-start">
+									<div class="col-9 d-felx align-items-end justify-content-start">
 										{{item.PRG}} - {{item.PRG_DESC}}
-										<!-- <span class="badge badge-danger mr-1" *ngIf="item.ENV3.toString() === '1'">正式</span> -->
 										<span class="badge badge-warning mr-1"
 											  *ngIf="item.ENV3.toString() === '0'">尚未上正式</span>
 										<span class="badge badge-danger mr-1"
@@ -180,7 +175,7 @@
 											  *ngIf="item.RONLY.toString() === '1' && item.ENV3.toString() === '1'">正式/顯示/唯獨</span>
 
 									</div>
-									<div class="col-2 d-felx justify-content-end">
+									<div class="col-3 d-felx justify-content-end">
 										<button type="submit"
 												class="btn btn-danger btn-sm mr-1"
 												(click)="editMenu(item)">
@@ -196,11 +191,7 @@
 												class="btn btn-danger btn-sm"
 												(click)="delete(item)">X</button>
 									</div>
-									<div class=" col-12  d-felx align-items-start justify-content-start">
-										<!-- <span class="badge badge-secondary mr-1" *ngIf="item.ENV1.toString() === '0'">EDU 不顯示</span>
-														<span class="badge badge-primary mr-1" *ngIf="item.ENV1.toString() === '1'">EDU 顯示</span>
-														<span class="badge badge-primary mr-1" *ngIf="item.RONLY1.toString() === '0'">EDU 可編輯</span>
-														<span class="badge badge-secondary mr-1" *ngIf="item.RONLY1.toString() === '1'">EDU 唯獨</span> -->
+
 
 										<span class="badge badge-secondary mr-1"
 											  *ngIf="item.ENV1.toString() === '0' && item.RONLY1.toString() === '0'">EDU/不顯示/可編輯</span>
@@ -219,91 +210,8 @@
 											  *ngIf="item.ENV2.toString() === '1' && item.RONLY2.toString() === '0'">IT/顯示/可編輯</span>
 										<span class="badge badge-dark mr-1"
 											  *ngIf="item.ENV2.toString() === '1' && item.RONLY2.toString() === '1'">IT/顯示/唯獨</span>
-
-										<!-- <span class="badge badge-secondary mr-1" *ngIf="item.ENV2.toString() === '0'">IT 不顯示</span>
-														<span class="badge badge-primary mr-1" *ngIf="item.ENV2.toString() === '1'">IT 顯示</span>
-														<span class="badge badge-primary mr-1" *ngIf="item.RONLY2.toString() === '0'">IT 可編輯</span>
-														<span class="badge badge-secondary mr-1" *ngIf="item.RONLY2.toString() === '1'">IT 唯獨</span> -->
 									</div>
 								</div>
-							</div>
-							<!-- <div class="col-12">
-												<div class="row">
-													<div class="col-4" *ngIf="item.ENV3.toString() !== '1'">
-														<div class="row">
-															<div class="col-12">
-																<form class="form">
-																	<div class="form-group col-12 pb-1">
-																		<label class="col-form-label  text-left pr-2">EDU是否顯示</label>
-																		<select  [attr.disabled]="item.ENV3.toString() == '1' ? 'disabled' : null"  class="form-control"  name="PRG_FLAG" [(ngModel)]="item.ENV1">
-																			<option [value]="1">顯示</option>
-																			<option [value]="0">隱藏</option>
-																		</select>
-																	</div>
-																</form>
-																<form class="form">
-																	<div class="form-group col-12 pb-1">
-																		<label class="col-form-label  text-left pr-2">EDU能否編輯</label>
-																		<select  [attr.disabled]="item.ENV3.toString() == '1' ? 'disabled' : null"  class="form-control"  name="PRG_FLAG" [(ngModel)]="item.RONLY1">
-																			<option [value]="0">編輯</option>
-																			<option [value]="1">唯讀</option>
-																		</select>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-													<div class="col-4" *ngIf="item.ENV3.toString() !== '1'">
-														<div class="row">
-															<div class="col-12">
-																<form class="form">
-																	<div class="form-group col-12 pb-1">
-																		<label class="col-form-label  text-left pr-2">IT是否顯示</label>
-																		<select  [attr.disabled]="item.ENV3.toString() == '1' ? 'disabled' : null"  class="form-control" name="PRG_FLAG" [(ngModel)]="item.ENV2">
-																			<option [value]="1">顯示</option>
-																			<option [value]="0">隱藏</option>
-																		</select>
-																	</div>
-																</form>
-																<form class="form">
-																	<div class="form-group col-12 pb-1">
-																		<label class="col-form-label  text-left pr-2">IT能否編輯</label>
-																		<select  [attr.disabled]="item.ENV3.toString() == '1' ? 'disabled' : null"  class="form-control"  name="PRG_FLAG" [(ngModel)]="item.RONLY2">
-																			<option [value]="0">編輯</option>
-																			<option [value]="1">唯讀</option>
-																		</select>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-													<div class="col-4" *ngIf="item.ENV3.toString() !== '1'">
-														<div class="row">
-															<div class="col-12">
-																<form class="form">
-																	<div class="form-group col-12 pb-1">
-																		<label class="col-form-label  text-left pr-2">正式是否顯示</label>
-																		<select [attr.disabled]="true" class="form-control" name="PRG_FLAG" [(ngModel)]="item.ENV3">
-																			<option [value]="1">顯示</option>
-																			<option [value]="0">隱藏</option>
-																		</select>
-																	</div>
-																</form>
-																<form class="form">
-																	<div class="form-group col-12 pb-1">
-																		<label class="col-form-label  text-left pr-2">正式能否編輯</label>
-																		<select [attr.disabled]="true" class="form-control"  name="PRG_FLAG" [(ngModel)]="item.RONLY">
-																			<option [value]="0">編輯</option>
-																			<option [value]="1">唯讀</option>
-																		</select>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-												</div>
-
-											</div> -->
 						</div>
 
 					</li>

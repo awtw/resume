@@ -30,21 +30,6 @@ export class MenuContentComponent implements OnInit {
 	saveMenuID: string = '123';
   // alert
   alerts: any[] = [];
-
-	// moduleList: ModuleList[];
-	// menuList: MenuInfo[];
-	// fullProgramList: MenuListProgram[];
-	// fullMenuList: MenuPgInfo[];
-	// menuModuleList: ModuleList[];
-	// selectedRowIndex: MenuInfo;
-	// stationMenuListInfo: GetOneMenuPgList;
-	// insertProgramList: MenuListProgram[] = [];
-	// fullMenuProgramList: MenuListProgram[] = [];
-	// fullMenuProgramFilterList: MenuListProgram[] = [];
-	// programNameList: string[] = [];
-	// programList: MenuListProgram[] = [];
-	// programStaticList: MenuListProgram[] = [];
-	// saveOne: MenuPgInfo;
   ProgramInfo: ProgramInfo[] = [];
   ModuleList: ModuleList[] = [];
   MenuPgInfo: MenuPgInfo[] = [];
@@ -137,6 +122,27 @@ export class MenuContentComponent implements OnInit {
       this.fullMenuProgramList.push(MenuListProgram);
     });
     this.ProgramInfo = this.menuService.getProgramList();
+    const item: MenuListProgram = {
+					MENU: '測試目錄',
+					PRG_NO: '',
+					MENU_DESC: '測試目錄',
+					PRG: ' 請直接拖曳',
+					RONLY: '',
+					ENV1: 100,
+					ENV2: 1,
+					ENV3: 0,
+					SEND_EMPNO: '',
+					RONLY1: '',
+					RONLY2: '',
+					MODULE: '測試目錄',
+					COMP:  '測試目錄',
+					DBNM:  '測試目錄',
+					FLAG_PRG: '',
+					PRG_DESC: '',
+					COUNTRY: 'TW',
+					select: false
+				};
+    this.programListForUse.push(item);
     this.ProgramInfo.forEach(data => {
       const MenuListProgram: MenuListProgram = {
             MENU: '測試目錄',
@@ -165,11 +171,13 @@ export class MenuContentComponent implements OnInit {
 
   }
 
-  addNew() {}
+  addNew() {
+     this.addAlert('warning', '提示' , '請向部門主管提出申請', false, 1000);
+  }
 
   edit() {
 		this.ifMove = false;
-
+    this.addAlert('success', '提示' , '保存成功', false, 1000);
 	}
 
   editMenu(data: MenuListProgram): void {
@@ -202,7 +210,7 @@ export class MenuContentComponent implements OnInit {
 	}
 
   backClicked() {
-		this.router.navigate(['../../info'], { relativeTo: this.activatedRoute });
+		this.router.navigate(['../../../info'], { relativeTo: this.activatedRoute });
 	}
 
   getData() {
@@ -231,63 +239,7 @@ export class MenuContentComponent implements OnInit {
 					debounceMs: 200,
 					defaultJoinOperator: 'OR'
 				}
-			},
-			// {
-			// 	headerName: '前往',
-			// 	field: 'goTo',
-			// 	width: 100,
-			// 	filter: false,
-			// 	cellRenderer: 'RenderButtonComponent',
-			// 	cellRendererParams: {
-			// 		clicked: (field: any) => {
-			// 			const tempInfodataIndex: MenuInfo = {
-			// 				MENU: field.MENU,
-			// 				MENU_DESC: field.MENU_DESC,
-			// 				MODULE: field.MODULE,
-			// 				COUNTRY: 'TW'
-			// 			};
-			// 			// console.log(tempInfodataIndex);
-			// 			this.goToLink(tempInfodataIndex);
-			// 		}
-			// 	},
-			// },
-			// {
-			// 	headerName: '複製結構',
-			// 	field: 'copyWord',
-			// 	width: 150,
-			// 	filter: false,
-			// 	cellRenderer: 'RenderButtonComponent',
-			// 	cellRendererParams: {
-			// 		clicked: (field: any) => {
-			// 			const tempInfodataIndex: MenuInfo = {
-			// 				MENU: field.MENU,
-			// 				MENU_DESC: field.MENU_DESC,
-			// 				MODULE: field.MODULE,
-			// 				COUNTRY: 'TW'
-			// 			};
-			// 			console.log(tempInfodataIndex);
-			// 			// this.goToLink(tempInfodataIndex, false);
-			// 			this.fullMenuProgramFilterList.forEach(data => {
-			// 				data.COUNTRY = 'TW';
-			// 			});
-			// 			const initialState = {
-			// 				tempInfodataIndex,
-			// 				// edit by yoyoLin 升級發現型別錯誤, message 先調整為第一筆, 問題請自行再修正
-			// 				// MenuAddComponent.message 型別是 MenuListProgram 非 MenuListProgram[]
-			// 				message: this.fullMenuProgramFilterList[0],
-			// 				moduleList: this.moduleList,
-			// 				stationListInfo: this.stationListInfo,
-			// 				title: '複製結構'
-			// 			};
-			// 			this.modalRef = this.modalService.show(AddMenuComponent, { initialState });
-			// 			this.modalRef.content.onClose.subscribe((result: boolean) => {
-			// 				if (result) {
-			// 					this.ngOnInit();
-			// 				}
-			// 			});
-			// 		}
-			// 	},
-			// }
+			}
 		];
 
 	}
@@ -307,7 +259,12 @@ export class MenuContentComponent implements OnInit {
   delete(item: MenuListProgram) {
 		this.ifMove = true;
 		item.select = false;
-     this.addAlert('warning', '提示' , '刪除', false, 1000);
+		if (this.fullMenuProgramList.length > 1) {
+			this.fullMenuProgramList.splice(this.fullMenuProgramList.indexOf(item), 1);
+			this.programListForUseStatic.push(item);
+		} else {
+			this.addAlert('warning', '提示' , '至少要有一隻程式', false, 1000);
+		}
 	}
 
   drop(event: CdkDragDrop<MenuListProgram[]>) {
@@ -316,6 +273,12 @@ export class MenuContentComponent implements OnInit {
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 			console.log(event);
 		} else {
+      if(event.previousContainer.data.length > 1){
+        transferArrayItem(event.previousContainer.data, event.container.data, event.currentIndex, event.currentIndex);
+      } else {
+        this.addAlert('warning', '提示' , '至少要有一隻程式', false, 1000);
+      }
+
 		}
 
 	}
@@ -324,33 +287,35 @@ export class MenuContentComponent implements OnInit {
 		this.counterForDrag++;
 
 		if (this.counterForDrag >= 3) {
-       this.addAlert('warning', '提示' , '點選程式再拖曳', false, 1000);
+       		// this.addAlert('warning', '提示' , '點選程式再拖曳', false, 1000);
 		}
 		this.ifMove = true;
 		if (event.previousContainer === event.container) {
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 			console.log(event);
 		} else {
-			const tempList = event.container.data.filter((unit) => unit.PRG.indexOf(event.previousContainer.data[event.previousIndex].PRG) > -1);
+			// const tempList = event.container.data.filter((unit) => unit.PRG.indexOf(event.previousContainer.data[event.previousIndex].PRG) > -1);
 			// console.log(tempList);
 			console.log(event);
 
-			if (tempList.length === 0 && event.previousContainer.data[event.previousIndex].PRG !== ' 請先點擊要添加的程式後再拖曳 可支援多程式拖曳') {
-				this.selectList.forEach(index => {
-					if (index.select) {
-						const dataIndex = this.programListForUse.indexOf(index);
-						const dataIndexStatic = this.programListForUseStatic.indexOf(index);
-						// console.log(dataIndex);
-						if (dataIndex >= 0) {
-							transferArrayItem(event.previousContainer.data, event.container.data, dataIndex, event.currentIndex);
-							event.currentIndex++;
-							if (dataIndexStatic >= 0) {
-								this.programListForUseStatic.splice(dataIndexStatic, 1);
-							}
-						}
-					}
-				});
-			}
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+
+			// if (tempList.length === 0 && event.previousContainer.data[event.previousIndex].PRG !== ' 請先點擊要添加的程式後再拖曳 可支援多程式拖曳') {
+			// 	this.selectList.forEach(index => {
+			// 		if (index.select) {
+			// 			const dataIndex = this.programListForUse.indexOf(index);
+			// 			const dataIndexStatic = this.programListForUseStatic.indexOf(index);
+			// 			// console.log(dataIndex);
+			// 			if (dataIndex >= 0) {
+			// 				transferArrayItem(event.previousContainer.data, event.container.data, dataIndexStatic, event.currentIndex);
+			// 				event.currentIndex++;
+			// 				if (dataIndexStatic >= 0) {
+			// 					this.programListForUseStatic.splice(dataIndexStatic, 1);
+			// 				}
+			// 			}
+			// 		}
+			// 	});
+			// }
 
 		}
 
