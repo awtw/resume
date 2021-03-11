@@ -167,7 +167,7 @@ export class InfoService {
   },
     {
     title: '資料交換系統',
-    Date: new Date(2020, 10, 5),
+    Date: new Date(2020, 6, 5),
     project: ProjectType.ERP功能開發,
     role: [RoleType.PM, RoleType.軟體開發],
     tool: [
