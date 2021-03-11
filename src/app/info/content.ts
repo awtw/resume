@@ -5,6 +5,15 @@ export class Content {
   role: RoleType[];
   content: string;
   tool: ToolList[];
+  cardContent: CardContent;
+}
+
+export class CardContent {
+  StartDate: Date;
+  Situation: string;
+  Task: string;
+  Action: string;
+  Result: string;
 }
 
 export class ExpByYear{

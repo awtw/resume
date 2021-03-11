@@ -49,7 +49,7 @@
           <img [src]="toolImage" alt="..." class=" img-fluid icon-s-size mr-2">
           <span *ngFor="let item of item.tool" class="badge badge-secondary mx-1">{{item | toolToString}}</span>
         </div> -->
-        <div class="col-md-12 mt-1">
+        <div class="col-md-12 mt-1 click" (click)="cardContent(item)">
           <small>{{item.content}}</small>
         </div>
       </div>

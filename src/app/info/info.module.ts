@@ -16,6 +16,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { PaymeComponent } from './payme/payme.component';
 import { PublicDiseaseComponent } from './public-disease/public-disease.component';
+import { CardContentComponent } from './card-content/card-content.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PublicDiseaseComponent } from './public-disease/public-disease.componen
     ToolToStringPipe,
     AboutMeComponent,
     PaymeComponent,
-    PublicDiseaseComponent],
+    PublicDiseaseComponent,
+    CardContentComponent],
   imports: [
     CommonModule,
     InfoRoutingModule,

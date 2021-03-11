@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Content, ToolList, ToolType } from '../content';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { CardContentComponent } from '../card-content/card-content.component';
+import { CardContent, Content, ToolList, ToolType } from '../content';
 import { InfoService } from '../info.service';
 
 @Component({
@@ -8,6 +10,10 @@ import { InfoService } from '../info.service';
   styleUrls: ['./center-content.component.scss']
 })
 export class CenterContentComponent implements OnInit {
+  constructor(
+    private infoService: InfoService,
+    private modalService: BsModalService,
+  ) { }
   building = 'assets/images/info/building3.png';
   person = 'assets/images/info/043.png';
   person2 = 'assets/images/info/023.png';
@@ -21,13 +27,8 @@ export class CenterContentComponent implements OnInit {
   selectTypeList: ToolList[] = [];
   content: Content[] = [];
   contentStatic: Content[] = [];
+  modalRef: BsModalRef;
   StringIsNumber = value => isNaN(Number(value)) === false;
-
-
-
-  constructor(
-    private infoService: InfoService
-  ) { }
 
   ngOnInit(): void {
     this.content = this.infoService.getContent();
@@ -99,6 +100,17 @@ export class CenterContentComponent implements OnInit {
     this.content = this.contentStatic;
     this.searchType.map(x => x.ifClick = false);
     this.contentStatic.map(x => x.tool.map(y => y.ifClick = false));
+  }
+
+  cardContent(card: Content): void {
+    const initialState = {
+      title: card.title,
+      cardContent: card.cardContent,
+    };
+    this.modalRef = this.modalService.show(CardContentComponent, { initialState });
+    // this.modalRef.setClass('modal-msd');
+    // this.modalRef.content.onClose.subscribe((result: boolean) => {
+    // });
   }
 
 }
