@@ -165,6 +165,31 @@ export class InfoService {
     ],
     content: '建立 gitflow 流程，整合AzureDevOps版本控管，協助程式簽呈作業，串接 Azure DevOps api 整合回 ERP ，並且協助解決衝突及合併主分支。'
   },
+    {
+    title: '資料交換系統',
+    Date: new Date(2020, 10, 5),
+    project: ProjectType.ERP功能開發,
+    role: [RoleType.PM, RoleType.軟體開發],
+    tool: [
+      {
+        toolID: ToolType['C#'],
+        toolName: ToolType[ToolType['C#']],
+        ifClick: false
+      },
+      {
+        toolID: ToolType.Angular,
+        toolName: ToolType[ToolType.Angular],
+        ifClick: false
+      },
+      {
+        toolID: ToolType.Axure,
+        toolName: ToolType[ToolType.Axure],
+        ifClick: false
+      }
+    ],
+    content:
+    '開發資料交換系統，提供良好介面讓工程師能夠新增提供給廠商的API及驗證資訊，提供篩選及匯出功能及使用說明，使兩岸同仁都能順利且快速將開發的API提供給廠商使用。'
+  },
   {
     title: '目錄發布系統',
     Date: new Date(2020, 3, 5),
